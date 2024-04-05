@@ -1,9 +1,6 @@
-package com.example.whattowatch.API;
+package com.example.whattowatch.src;
 
-import com.example.whattowatch.API.Domain.Movie;
-import com.example.whattowatch.API.Domain.MovieResponse;
-
-import java.util.List;
+import com.example.whattowatch.src.Domain.MovieResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

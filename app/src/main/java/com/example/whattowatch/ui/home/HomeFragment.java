@@ -1,32 +1,23 @@
 package com.example.whattowatch.ui.home;
 
-import static com.example.whattowatch.API.Service.MovieService.AUTH_TOKEN;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.example.whattowatch.API.Adapter.MovieAdapter;
-import com.example.whattowatch.API.Api;
-import com.example.whattowatch.API.Domain.Movie;
-import com.example.whattowatch.API.Domain.MovieResponse;
-import com.example.whattowatch.API.Service.MovieService;
-import com.example.whattowatch.R;
-import com.example.whattowatch.databinding.FragmentDashboardBinding;
+import com.example.whattowatch.src.Adapter.MovieAdapter;
+import com.example.whattowatch.src.Api;
+import com.example.whattowatch.src.Domain.MovieResponse;
+import com.example.whattowatch.src.Service.MovieService;
 import com.example.whattowatch.databinding.FragmentHomeBinding;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
