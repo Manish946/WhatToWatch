@@ -53,4 +53,5 @@ dependencies {
     implementation(libs.lifecycle.extensions)
     implementation(libs.converter.gson.retrofit)
     implementation(libs.picasso)
+    implementation(libs.bcrypt)
 }
