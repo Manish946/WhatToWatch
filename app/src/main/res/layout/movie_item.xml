@@ -57,6 +57,7 @@
                 android:textSize="14sp"
                 android:text="Overview" />
             <Button
+                android:id="@+id/buttonAddToWatchList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/add_watch_list"

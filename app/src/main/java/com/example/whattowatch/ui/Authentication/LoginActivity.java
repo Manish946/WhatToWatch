@@ -54,10 +54,20 @@ public class LoginActivity extends AppCompatActivity {
         if(user != null) {
            BCrypt.Result passwordValidResult = BCrypt.verifyer().verify(password.toCharArray(), user.getPassword());
            if(passwordValidResult.verified) {
+               saveUserData(user);
                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                startActivity(intent);
                finish();
            }
         }
+    }
+
+    private void saveUserData(User user) {
+        SharedPreferences sharedPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("userId", user.getUserId());
+        editor.putString("email", user.getEmail());
+        editor.putString("fullName", user.getFullName());
+        editor.apply();
     }
 }
