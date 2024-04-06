@@ -6,15 +6,26 @@
     tools:context=".ui.home.HomeFragment">
 
     <TextView
+        android:id="@+id/text_userName"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:text="UserName"
+        android:textAlignment="textEnd"
+        android:textStyle="normal"
+        android:textSize="22dp"
+        android:textColor="@color/teal_700"
+         />
+    <TextView
         android:id="@+id/text_page_counter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Trending Movies"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         android:textStyle="bold"
         android:textSize="32dp"
         android:textColor="@color/purple_200"
-         />
+        />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_movies"

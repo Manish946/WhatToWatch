@@ -12,12 +12,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.whattowatch.databinding.FragmentHomeBinding;
 import com.example.whattowatch.src.Adapter.MovieAdapter;
 import com.example.whattowatch.src.Api;
 import com.example.whattowatch.src.Domain.MovieResponse;
 import com.example.whattowatch.src.Domain.User;
 import com.example.whattowatch.src.Service.MovieService;
-import com.example.whattowatch.databinding.FragmentHomeBinding;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -40,6 +40,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         currentUser = getCurrentUser();
+        binding.textUserName.setText(currentUser.getFullName());
         setupRecyclerView();
         fetchMovies(currentPage);
         return root;
