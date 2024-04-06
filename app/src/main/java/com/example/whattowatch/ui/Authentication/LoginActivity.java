@@ -11,20 +11,26 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.whattowatch.MainActivity;
 import com.example.whattowatch.R;
+import com.example.whattowatch.src.Domain.User;
+import com.example.whattowatch.src.Helper.ContextDb;
+
+import at.favre.lib.crypto.bcrypt.BCrypt;
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText editTextUsername, editTextPassword;
+    private EditText editTextEmail, editTextPassword;
     private Button buttonLogin, buttonRegister;
+    private ContextDb contextDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        editTextUsername = findViewById(R.id.editTextUsername);
+        editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
         buttonRegister = findViewById(R.id.buttonRegister);
-
+        contextDb = new ContextDb(this);
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +48,16 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUser() {
-
+        String email = editTextEmail.getText().toString().trim();
+        String password = editTextPassword.getText().toString().trim();
+        User user = contextDb.getUserByEmail(email);
+        if(user != null) {
+           BCrypt.Result passwordValidResult = BCrypt.verifyer().verify(password.toCharArray(), user.getPassword());
+           if(passwordValidResult.verified) {
+               Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+               startActivity(intent);
+               finish();
+           }
+        }
     }
 }
