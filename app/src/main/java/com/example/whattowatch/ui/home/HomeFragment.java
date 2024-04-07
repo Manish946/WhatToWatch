@@ -7,17 +7,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.whattowatch.databinding.FragmentHomeBinding;
+import com.example.whattowatch.R;
 import com.example.whattowatch.src.Adapter.MovieAdapter;
 import com.example.whattowatch.src.Api;
 import com.example.whattowatch.src.Domain.MovieResponse;
 import com.example.whattowatch.src.Domain.User;
 import com.example.whattowatch.src.Service.MovieService;
+import com.example.whattowatch.databinding.FragmentHomeBinding;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
