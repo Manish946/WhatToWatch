@@ -51,14 +51,24 @@ public class LoginActivity extends AppCompatActivity {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         User user = contextDb.getUserByEmail(email);
+        // Check if email or password is empty
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if(user != null) {
            BCrypt.Result passwordValidResult = BCrypt.verifyer().verify(password.toCharArray(), user.getPassword());
            if(passwordValidResult.verified) {
+               Toast.makeText(this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
                saveUserData(user);
                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                startActivity(intent);
                finish();
+           } else {
+               Toast.makeText(this, "Password or Email is incorrect", Toast.LENGTH_SHORT).show();
            }
+        } else {
+            Toast.makeText(this, "User Not Found, Try Again!", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -8,17 +8,7 @@ import com.example.whattowatch.src.Domain.MovieResponse;
 
 public class HomeViewModel extends ViewModel {
 
-    private final MutableLiveData<MovieResponse> movieResponse;
 
-    public HomeViewModel() {
-        movieResponse = new MutableLiveData<>();
-    }
-
-    public LiveData<MovieResponse> getMovieResponseLiveData() {
-        return movieResponse;
-    }
-
-    public void setMovieResponse(MovieResponse movieResponse) {
-        movieResponse.setMovies(movieResponse.getMovies());
+    public HomeViewModel(){
     }
 }
