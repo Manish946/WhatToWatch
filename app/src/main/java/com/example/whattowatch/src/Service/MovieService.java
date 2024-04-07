@@ -1,5 +1,5 @@
-package com.example.whattowatch.API.Service;
-import com.example.whattowatch.API.Api;
+package com.example.whattowatch.src.Service;
+import com.example.whattowatch.src.Api;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;

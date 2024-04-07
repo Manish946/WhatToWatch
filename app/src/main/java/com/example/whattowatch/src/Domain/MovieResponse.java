@@ -1,4 +1,4 @@
-package com.example.whattowatch.API.Domain;
+package com.example.whattowatch.src.Domain;
 
 import com.google.gson.annotations.SerializedName;
 

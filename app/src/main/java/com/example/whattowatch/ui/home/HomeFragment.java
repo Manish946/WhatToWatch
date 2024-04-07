@@ -1,7 +1,8 @@
 package com.example.whattowatch.ui.home;
 
-import static com.example.whattowatch.API.Service.MovieService.AUTH_TOKEN;
+import static android.content.Context.MODE_PRIVATE;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,22 +12,18 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.example.whattowatch.API.Adapter.MovieAdapter;
-import com.example.whattowatch.API.Api;
-import com.example.whattowatch.API.Domain.Movie;
-import com.example.whattowatch.API.Domain.MovieResponse;
-import com.example.whattowatch.API.Service.MovieService;
 import com.example.whattowatch.R;
-import com.example.whattowatch.databinding.FragmentDashboardBinding;
+import com.example.whattowatch.src.Adapter.MovieAdapter;
+import com.example.whattowatch.src.Api;
+import com.example.whattowatch.src.Domain.MovieResponse;
+import com.example.whattowatch.src.Domain.User;
+import com.example.whattowatch.src.Service.MovieService;
 import com.example.whattowatch.databinding.FragmentHomeBinding;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,20 +35,21 @@ public class HomeFragment extends Fragment {
     private MovieAdapter movieAdapter;
     private int currentPage = 1;
     private boolean isLoading = false;
+    private User currentUser;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
+        currentUser = getCurrentUser();
         setupRecyclerView();
         fetchMovies(currentPage);
-
         return root;
     }
 
     private void setupRecyclerView() {
         movieAdapter = new MovieAdapter(getContext(), new ArrayList<>());
+        movieAdapter.setUserId(currentUser.getUserId());
         binding.recyclerViewMovies.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerViewMovies.setAdapter(movieAdapter);
 
@@ -85,6 +83,18 @@ public class HomeFragment extends Fragment {
                 isLoading = false;
             }
         });
+    }
+
+    private User getCurrentUser() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("CurrentUser", MODE_PRIVATE);
+        String userId = sharedPreferences.getString("userId", "");
+        String email = sharedPreferences.getString("email", "");
+        String fullName = sharedPreferences.getString("fullName", "");
+        if (!userId.isEmpty() && !email.isEmpty()) {
+            return new User(userId,fullName, email, "");
+        } else {
+            return null; // Return null if user data is not found
+        }
     }
 
     @Override
