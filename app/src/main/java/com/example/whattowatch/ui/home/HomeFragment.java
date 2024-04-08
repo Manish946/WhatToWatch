@@ -42,6 +42,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         currentUser = getCurrentUser();
+        currentPage = 1;
         setupRecyclerView();
         fetchMovies(currentPage);
         return root;
